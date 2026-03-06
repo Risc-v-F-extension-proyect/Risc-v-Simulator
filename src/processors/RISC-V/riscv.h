@@ -104,7 +104,43 @@ enum class RVInstr {
   DIVW,
   DIVUW,
   REMW,
-  REMUW
+  REMUW,
+
+  /* F extention instructions*/
+  FLW_S,
+  FSW_S,       //02
+
+  FADD_S,
+  FSUB_S,
+  FMUL_S,
+  FDIV_S,
+  FSQRT_S,     //07
+
+  FMIN_S,
+  FMAX_S,      //09
+
+  FEQ_S,
+  FLT_S,
+  FLE_S,       //12
+
+  FCVT_W_S,
+  FCVT_WU_S,
+  FCVT_S_W,
+  FCVT_S_WU,   //16
+
+  FCLASS_S,    //17
+
+  FMV_X_W_S,
+  FMV_W_X_S,   //19
+
+  FSGNJ_S,
+  FSGNJN_S,
+  FSGNJX_S,    //22
+
+  FMADD_S,
+  FMSUB_S,
+  FNMADD_S,
+  FNMSUB_S,    //26
 };
 
 /** Datapath enumerations */

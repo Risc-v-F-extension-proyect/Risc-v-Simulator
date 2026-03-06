@@ -133,46 +133,263 @@ struct F_R4 : public RV_Instruction<InstrImpl> {
 };
 
 // Aritméticas
-struct Fadd_s : public F_R<Fadd_s, OpcodeID::FP, Fmt::S, Funct5::FADD> { constexpr static std::string_view NAME = "fadd.s"; };
-struct Fsub_s : public F_R<Fsub_s, OpcodeID::FP, Fmt::S, Funct5::FSUB> { constexpr static std::string_view NAME = "fsub.s"; };
-struct Fmul_s : public F_R<Fmul_s, OpcodeID::FP, Fmt::S, Funct5::FMUL> { constexpr static std::string_view NAME = "fmul.s"; };
-struct Fdiv_s : public F_R<Fdiv_s, OpcodeID::FP, Fmt::S, Funct5::FDIV> { constexpr static std::string_view NAME = "fdiv.s"; };
-struct Fsqrt_s : public F_R<Fsqrt_s, OpcodeID::FP, Fmt::S, Funct5::FSQRT> { constexpr static std::string_view NAME = "fsqrt.s"; };
+struct Fadd_s : public F_R<
+                    Fadd_s,
+                    OpcodeID::FP,
+                    Fmt::S,
+                    Funct5::FADD
+                    > {
+  constexpr static std::string_view NAME = "fadd.s";
+};
+
+struct Fsub_s : public F_R<
+                    Fsub_s,
+                    OpcodeID::FP,
+                    Fmt::S,
+                    Funct5::FSUB
+                    > {
+  constexpr static std::string_view NAME = "fsub.s";
+};
+
+struct Fmul_s : public F_R<
+                    Fmul_s,
+                    OpcodeID::FP,
+                    Fmt::S,
+                    Funct5::FMUL
+                    > {
+  constexpr static std::string_view NAME = "fmul.s";
+};
+
+struct Fdiv_s : public F_R<
+                    Fdiv_s,
+                    OpcodeID::FP,
+                    Fmt::S,
+                    Funct5::FDIV
+                    > {
+  constexpr static std::string_view NAME = "fdiv.s";
+};
+
+struct Fsqrt_s : public F_R<
+                     Fsqrt_s,
+                     OpcodeID::FP,
+                     Fmt::S,
+                     Funct5::FSQRT
+                     > {
+  constexpr static std::string_view NAME = "fsqrt.s";
+};
 
 // Min-Max
-struct Fmin_s : public F_R<Fmin_s, OpcodeID::FP, Fmt::S, Funct5::FMINMAX, Rm::RNE> { constexpr static std::string_view NAME = "fmin.s"; };
-struct Fmax_s : public F_R<Fmax_s, OpcodeID::FP, Fmt::S, Funct5::FMINMAX, Rm::RTZ> { constexpr static std::string_view NAME = "fmax.s"; };
+struct Fmin_s : public F_R<
+                    Fmin_s,
+                    OpcodeID::FP,
+                    Fmt::S,
+                    Funct5::FMINMAX,
+                    Rm::RNE
+                    > {
+  constexpr static std::string_view NAME = "fmin.s";
+};
+
+struct Fmax_s : public F_R<
+                    Fmax_s,
+                    OpcodeID::FP,
+                    Fmt::S,
+                    Funct5::FMINMAX,
+                    Rm::RTZ
+                    > {
+  constexpr static std::string_view NAME = "fmax.s";
+};
 
 // Comparaciones
-struct Feq_s : public F_R<Feq_s, OpcodeID::FP, Fmt::S, Funct5::FEQ, Rm::RUP> { constexpr static std::string_view NAME = "feq.s"; };
-struct Flt_s : public F_R<Flt_s, OpcodeID::FP, Fmt::S, Funct5::FLT, Rm::RTZ> { constexpr static std::string_view NAME = "flt.s"; };
-struct Fle_s : public F_R<Fle_s, OpcodeID::FP, Fmt::S, Funct5::FLE, Rm::RDN> { constexpr static std::string_view NAME = "fle.s"; };
+struct Feq_s : public F_R<
+                   Feq_s,
+                   OpcodeID::FP,
+                   Fmt::S,
+                   Funct5::FEQ,
+                   Rm::RUP
+                   > {
+  constexpr static std::string_view NAME = "feq.s";
+};
+
+struct Flt_s : public F_R<
+                   Flt_s,
+                   OpcodeID::FP,
+                   Fmt::S,
+                   Funct5::FLT,
+                   Rm::RTZ
+                   > {
+  constexpr static std::string_view NAME = "flt.s";
+};
+
+struct Fle_s : public F_R<
+                   Fle_s,
+                   OpcodeID::FP,
+                   Fmt::S,
+                   Funct5::FLE,
+                   Rm::RDN
+                   > {
+  constexpr static std::string_view NAME = "fle.s";
+};
 
 // Conversión
-struct Fcvt_w_s : public F_R<Fcvt_w_s, OpcodeID::FP, Fmt::S, Funct5::FCVT_W_S, Rm::UNDEFINED, Rs2::ZERO> { constexpr static std::string_view NAME = "fcvt.w.s"; };
-struct Fcvt_wu_s : public F_R<Fcvt_wu_s, OpcodeID::FP, Fmt::S, Funct5::FCVT_WU_S, Rm::UNDEFINED, Rs2::ONE> { constexpr static std::string_view NAME = "fcvt.wu.s"; };
-struct Fcvt_s_w_s : public F_R<Fcvt_s_w_s, OpcodeID::FP, Fmt::S, Funct5::FCVT_S_W, Rm::UNDEFINED, Rs2::ZERO> { constexpr static std::string_view NAME = "fcvt.s.w"; };
-struct Fcvt_s_wu_s : public F_R<Fcvt_s_wu_s, OpcodeID::FP, Fmt::S, Funct5::FCVT_S_WU, Rm::UNDEFINED, Rs2::ONE> { constexpr static std::string_view NAME = "fcvt.s.wu"; };
+struct Fcvt_w_s : public F_R<
+                      Fcvt_w_s,
+                      OpcodeID::FP,
+                      Fmt::S,
+                      Funct5::FCVT_W_S,
+                      Rm::UNDEFINED,
+                      Rs2::ZERO
+                      > {
+  constexpr static std::string_view NAME = "fcvt.w.s";
+};
+
+struct Fcvt_wu_s : public F_R<
+                       Fcvt_wu_s,
+                       OpcodeID::FP,
+                       Fmt::S,
+                       Funct5::FCVT_WU_S,
+                       Rm::UNDEFINED,
+                       Rs2::ONE
+                       > {
+  constexpr static std::string_view NAME = "fcvt.wu.s";
+};
+
+struct Fcvt_s_w_s : public F_R<
+                        Fcvt_s_w_s,
+                        OpcodeID::FP,
+                        Fmt::S,
+                        Funct5::FCVT_S_W,
+                        Rm::UNDEFINED,
+                        Rs2::ZERO
+                        > {
+  constexpr static std::string_view NAME = "fcvt.s.w";
+};
+
+struct Fcvt_s_wu_s : public F_R<
+                         Fcvt_s_wu_s,
+                         OpcodeID::FP,
+                         Fmt::S,
+                         Funct5::FCVT_S_WU,
+                         Rm::UNDEFINED,
+                         Rs2::ONE
+                         > {
+  constexpr static std::string_view NAME = "fcvt.s.wu";
+};
 
 // Clasificación y Movimiento
-struct Fclass_s : public F_R<Fclass_s, OpcodeID::FP, Fmt::S, Funct5::FCLASS, Rm::RTZ> { constexpr static std::string_view NAME = "fclass.s"; };
-struct Fmv_x_w_s : public F_R<Fmv_x_w_s, OpcodeID::FP, Fmt::S, Funct5::FMV_X_W, Rm::RNE> { constexpr static std::string_view NAME = "fmv.x.w"; };
-struct Fmv_w_x_s : public F_R<Fmv_w_x_s, OpcodeID::FP, Fmt::S, Funct5::FMV_W_X, Rm::RNE> { constexpr static std::string_view NAME = "fmv.w.x"; };
+struct Fclass_s : public F_R<
+                      Fclass_s,
+                      OpcodeID::FP,
+                      Fmt::S,
+                      Funct5::FCLASS,
+                      Rm::RTZ
+                      > {
+  constexpr static std::string_view NAME = "fclass.s";
+};
+
+struct Fmv_x_w_s : public F_R<
+                       Fmv_x_w_s,
+                       OpcodeID::FP,
+                       Fmt::S,
+                       Funct5::FMV_X_W,
+                       Rm::RNE
+                       > {
+  constexpr static std::string_view NAME = "fmv.x.w";
+};
+
+struct Fmv_w_x_s : public F_R<
+                       Fmv_w_x_s,
+                       OpcodeID::FP,
+                       Fmt::S,
+                       Funct5::FMV_W_X,
+                       Rm::RNE
+                       > {
+  constexpr static std::string_view NAME = "fmv.w.x";
+};
 
 // Signo
-struct Fsgnj_s : public F_R<Fsgnj_s, OpcodeID::FP, Fmt::S, Funct5::FSGNJ, Rm::RNE> { constexpr static std::string_view NAME = "fsgnj.s"; };
-struct Fsgnjn_s : public F_R<Fsgnjn_s, OpcodeID::FP, Fmt::S, Funct5::FSGNJ, Rm::RTZ> { constexpr static std::string_view NAME = "fsgnjn.s"; };
-struct Fsgnjx_s : public F_R<Fsgnjx_s, OpcodeID::FP, Fmt::S, Funct5::FSGNJ, Rm::RDN> { constexpr static std::string_view NAME = "fsgnjx.s"; };
+struct Fsgnj_s : public F_R<
+                     Fsgnj_s,
+                     OpcodeID::FP,
+                     Fmt::S,
+                     Funct5::FSGNJ,
+                     Rm::RNE
+                     > {
+  constexpr static std::string_view NAME = "fsgnj.s";
+};
+
+struct Fsgnjn_s : public F_R<
+                      Fsgnjn_s,
+                      OpcodeID::FP,
+                      Fmt::S,
+                      Funct5::FSGNJ,
+                      Rm::RTZ
+                      > {
+  constexpr static std::string_view NAME = "fsgnjn.s";
+};
+
+struct Fsgnjx_s : public F_R<
+                      Fsgnjx_s,
+                      OpcodeID::FP,
+                      Fmt::S,
+                      Funct5::FSGNJ,
+                      Rm::RDN
+                      > {
+  constexpr static std::string_view NAME = "fsgnjx.s";
+};
 
 // FMA (R4)
-struct Fmadd_s : public F_R4<Fmadd_s, OpcodeID::FP_MADD, Funct5::FMADD, Fmt::S> { constexpr static std::string_view NAME = "fmadd.s"; };
-struct Fmsub_s : public F_R4<Fmsub_s, OpcodeID::FP_MSUB, Funct5::FMSUB, Fmt::S> { constexpr static std::string_view NAME = "fmsub.s"; };
-struct Fnmadd_s : public F_R4<Fnmadd_s, OpcodeID::FP_NMADD, Funct5::FNMADD, Fmt::S> { constexpr static std::string_view NAME = "fnmadd.s"; };
-struct Fnmsub_s : public F_R4<Fnmsub_s, OpcodeID::FP_NMSUB, Funct5::FNMSUB, Fmt::S> { constexpr static std::string_view NAME = "fnmsub.s"; };
+struct Fmadd_s : public F_R4<
+                     Fmadd_s,
+                     OpcodeID::FP_MADD,
+                     Funct5::FMADD,
+                     Fmt::S
+                     > {
+  constexpr static std::string_view NAME = "fmadd.s";
+};
+
+struct Fmsub_s : public F_R4<
+                     Fmsub_s,
+                     OpcodeID::FP_MSUB,
+                     Funct5::FMSUB,
+                     Fmt::S
+                     > {
+  constexpr static std::string_view NAME = "fmsub.s";
+};
+
+struct Fnmadd_s : public F_R4<
+                      Fnmadd_s,
+                      OpcodeID::FP_NMADD,
+                      Funct5::FNMADD,
+                      Fmt::S
+                      > {
+  constexpr static std::string_view NAME = "fnmadd.s";
+};
+
+struct Fnmsub_s : public F_R4<
+                      Fnmsub_s,
+                      OpcodeID::FP_NMSUB,
+                      Funct5::FNMSUB,
+                      Fmt::S
+                      > {
+  constexpr static std::string_view NAME = "fnmsub.s";
+};
 
 // Carga y Almacenamiento
-struct Flw_s : public F_Lw<Flw_s, OpcodeID::FP_LW, Rm::RDN> { constexpr static std::string_view NAME = "flw.s"; };
-struct Fsw_s : public F_Sw<Fsw_s, OpcodeID::FP_SW, Rm::RDN> { constexpr static std::string_view NAME = "fsw.s"; };
+struct Flw_s : public F_Lw<
+                   Flw_s,
+                   OpcodeID::FP_LW,
+                   Rm::RDN
+                   > {
+  constexpr static std::string_view NAME = "flw.s";
+};
+
+struct Fsw_s : public F_Sw<
+                   Fsw_s,
+                   OpcodeID::FP_SW,
+                   Rm::RDN
+                   > {
+  constexpr static std::string_view NAME = "fsw.s";
+};
 
 //void enableExt(const ISAInfoBase *isa, InstrVec &instructions, PseudoInstrVec &pseudoInstructions);
 
