@@ -113,24 +113,20 @@ struct F_R : public RV_Instruction<InstrImpl> {
   struct Fields : public ResolveFields {};
 };
 
-template <typename InstrImpl, OpcodeID opcodeID, Funct5 funct5, Fmt fmt, Rm rm = Rm::UNDEFINED>
+template <typename InstrImpl, OpcodeID opcodeID, Fmt fmt>
 struct F_R4 : public RV_Instruction<InstrImpl> {
-  using ResolveOpcode = typename std::conditional<
-      rm == Rm::UNDEFINED,
-      OpcodeSet<OpPartOpcode<opcodeID>, OpPartFmt<static_cast<unsigned>(fmt)>>,
-      OpcodeSet<OpPartOpcode<opcodeID>, OpPartRm<static_cast<unsigned>(rm)>, OpPartFmt<static_cast<unsigned>(fmt)>>
-      >::type;
+
+  using ResolveOpcode =
+      OpcodeSet<
+          OpPartOpcode<opcodeID>,
+          OpPartFmt<static_cast<unsigned>(fmt)>
+          >;
 
   struct Opcode : public ResolveOpcode {};
 
-  using ResolveFields = typename std::conditional<
-      rm == Rm::UNDEFINED,
-      FieldSet<RegRd, RegRm, RegRs1, RegRs2, RegRs3>,
-      FieldSet<RegRd, RegRs1, RegRs2, RegRs3>
-      >::type;
-
-  struct Fields : public ResolveFields {};
+  struct Fields : FieldSet<RegRd, RegRm, RegRs1, RegRs2, RegRs3> {};
 };
+
 
 // Aritméticas
 struct Fadd_s : public F_R<
@@ -341,7 +337,6 @@ struct Fsgnjx_s : public F_R<
 struct Fmadd_s : public F_R4<
                      Fmadd_s,
                      OpcodeID::FP_MADD,
-                     Funct5::FMADD,
                      Fmt::S
                      > {
   constexpr static std::string_view NAME = "fmadd.s";
@@ -350,7 +345,6 @@ struct Fmadd_s : public F_R4<
 struct Fmsub_s : public F_R4<
                      Fmsub_s,
                      OpcodeID::FP_MSUB,
-                     Funct5::FMSUB,
                      Fmt::S
                      > {
   constexpr static std::string_view NAME = "fmsub.s";
@@ -359,7 +353,6 @@ struct Fmsub_s : public F_R4<
 struct Fnmadd_s : public F_R4<
                       Fnmadd_s,
                       OpcodeID::FP_NMADD,
-                      Funct5::FNMADD,
                       Fmt::S
                       > {
   constexpr static std::string_view NAME = "fnmadd.s";
@@ -368,7 +361,6 @@ struct Fnmadd_s : public F_R4<
 struct Fnmsub_s : public F_R4<
                       Fnmsub_s,
                       OpcodeID::FP_NMSUB,
-                      Funct5::FNMSUB,
                       Fmt::S
                       > {
   constexpr static std::string_view NAME = "fnmsub.s";

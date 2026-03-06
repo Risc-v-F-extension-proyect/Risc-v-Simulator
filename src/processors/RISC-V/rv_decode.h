@@ -186,16 +186,35 @@ public:
                 const auto fields = RVInstrParser::getParser()->decodeB32Instr(instrValue);
                 switch (fields[4]) {
                     case 0b000: return RVInstr::BEQ;
-                    case 0b001: return RVInstr::BNE;
-                    case 0b100: return RVInstr::BLT;
+                    case 0b001: return RVInstr::BNE;                    case 0b100: return RVInstr::BLT;
                     case 0b101: return RVInstr::BGE;
                     case 0b110: return RVInstr::BLTU;
                     case 0b111: return RVInstr::BGEU;
                     default: break;
                 }
                 break;
+            }/*
+            case RVISA::OpcodeID::FP:{
+                //definicion de decodificador de instrucciones
+            }*/
+            case RVISA::OpcodeID::FP_MADD:{
+                return RVInstr::FMADD_S;
             }
-
+            case RVISA::OpcodeID::FP_MSUB:{
+                return RVInstr::FMSUB_S;
+            }
+            case RVISA::OpcodeID::FP_NMADD:{
+                return RVInstr::FNMADD_S;
+            }
+            case RVISA::OpcodeID::FP_NMSUB:{
+                return RVInstr::FNMSUB_S;
+            }
+            case RVISA::OpcodeID::FP_LW:{
+                return RVInstr::FLW_S;
+            }
+            case RVISA::OpcodeID::FP_SW:{
+                return RVInstr::FSW_S;
+            }
 
             default:
                 break;

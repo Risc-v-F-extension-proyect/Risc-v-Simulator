@@ -193,6 +193,10 @@ public:
     static RVInstrParser parser;
     return &parser;
   }
+  ////F extention instructions parser
+  std::vector<uint32_t> decodeF32Instr(const uint32_t &instr)const {
+    return m_decodeF32Instr(instr);
+  }
 
   std::vector<uint32_t> decodeU32Instr(const uint32_t &instr) const {
     return m_decodeU32Instr(instr);
@@ -271,7 +275,25 @@ private:
         generateInstrParser<uint32_t>(std::vector<int>{2, 5, 3, 3, 3, 16});
     m_decodeCB216Instr =
         generateInstrParser<uint32_t>(std::vector<int>{2, 5, 3, 2, 1, 3, 16});
+
+    //// extention
+    m_decodeF32Instr =
+        generateInstrParser<uint32_t>(
+            std::vector<int>
+            {
+                5, //rs3
+                2, //fmt
+                5, //rs2
+                5, //rs1
+                3, //rd
+                7  //opcode
+            });   // from LSB to MSB
   }
+  //// F extention
+  decode_functor<uint32_t> m_decodeF32Instr;
+
+
+
   decode_functor<uint32_t> m_decodeU32Instr;
   decode_functor<uint32_t> m_decodeJ32Instr;
   decode_functor<uint32_t> m_decodeI32Instr;
