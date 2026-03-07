@@ -281,7 +281,7 @@ private:
         generateInstrParser<uint32_t>(
             std::vector<int>
             {
-                5, //rs3
+                5, //rs3 o funct5
                 2, //fmt
                 5, //rs2
                 5, //rs1
@@ -289,7 +289,7 @@ private:
                 7  //opcode
             });   // from LSB to MSB
   }
-  //// F extention
+  //// F extention decoder
   decode_functor<uint32_t> m_decodeF32Instr;
 
 

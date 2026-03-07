@@ -186,17 +186,69 @@ public:
                 const auto fields = RVInstrParser::getParser()->decodeB32Instr(instrValue);
                 switch (fields[4]) {
                     case 0b000: return RVInstr::BEQ;
-                    case 0b001: return RVInstr::BNE;                    case 0b100: return RVInstr::BLT;
+                    case 0b001: return RVInstr::BNE;
+                    case 0b100: return RVInstr::BLT;
                     case 0b101: return RVInstr::BGE;
                     case 0b110: return RVInstr::BLTU;
                     case 0b111: return RVInstr::BGEU;
                     default: break;
                 }
                 break;
-            }/*
+            }
             case RVISA::OpcodeID::FP:{
+                const auto fields = RVInstrParser::getParser()->decodeF32Instr(instrValue);
+                switch (fields[7]) {//campo funct5
+
+                  //Aritmeticas
+                  case 0b00000: return RVInstr::FADD_S;
+                  case 0b00001: return RVInstr::FSUB_S;
+                  case 0b00010: return RVInstr::FMUL_S;
+                  case 0b00011: return RVInstr::FDIV_S;
+                  case 0b00111: return RVInstr::FSQRT_S;
+
+                  //Min-max
+                  case 0b00101:
+                    switch (fields[2]) {//campo rm alias funct3
+                      case 0b001: return RVInstr::FMIN_S;
+                      case 0b011: return RVInstr::FMAX_S;
+                    }
+                  //Comparaciones
+                  case 0b10100: return RVInstr::FEQ_S;
+                  case 0b10101: return RVInstr::FLE_S;
+                  case 0b10110: return RVInstr::FLT_S;
+
+                  //Conversion int-float
+                  case 0b11000://FCVT_W_S and FCVT_WU_S
+                    switch (fields[4]) {//campo rs2 alias funct3
+                      case 0: return RVInstr::FCVT_W_S;
+                      case 1: return RVInstr::FCVT_WU_S;
+                    }
+                  case 0b11010://FCVT_S_W and FCVT_S_UW
+                    switch (fields[4]) {//campo rs2 alias funct3
+                      case 0: return RVInstr::FCVT_S_W;
+                      case 1: return RVInstr::FCVT_S_WU;
+                    }
+
+                  //Copia de bits int-float
+                  case 0b11100:
+                    switch (fields[2]) {//campo rm alias funct3
+                      case 0b000: return RVInstr::FMV_X_W_S;
+
+                      //Clasificacion
+                      case 0b001: return RVInstr::FCLASS_S;
+                    }
+
+                  case 0b11110: return RVInstr::FMV_W_X_S;
+                  //Inyeccion de signo
+                  case 0b00100:
+                    switch (fields[2]) {// campo rm alias funct3
+                      case 0b000: return RVInstr::FSGNJ_S;
+                      case 0b001: return RVInstr::FSGNJN_S;
+                      case 0b010: return RVInstr::FSGNJX_S;
+                    }
+                }
                 //definicion de decodificador de instrucciones
-            }*/
+            }
             case RVISA::OpcodeID::FP_MADD:{
                 return RVInstr::FMADD_S;
             }

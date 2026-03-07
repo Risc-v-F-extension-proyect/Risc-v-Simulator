@@ -14,18 +14,25 @@ enum class Funct5 : unsigned {
   FMUL    = 0b00010,
   FDIV    = 0b00011,
   FSQRT   = 0b01011,
+
   FMINMAX = 0b00101,
+
   FEQ     = 0b10100,
   FLE     = 0b10101,
   FLT     = 0b10110,
+
   FCVT_W_S  = 0b11000,
   FCVT_WU_S = 0b11000,
   FCVT_S_W  = 0b11010,
   FCVT_S_WU = 0b11010,
+
   FCLASS  = 0b11100,
+
   FMV_X_W = 0b11100,
   FMV_W_X = 0b11110,
-  FSGNJ   = 0b00010,
+
+  FSGNJ   = 0b00100,
+
   FMADD   = 0b00000,
   FMSUB   = 0b00000,
   FNMADD  = 0b00000,
@@ -372,7 +379,7 @@ struct Flw_s : public F_Lw<
                    OpcodeID::FP_LW,
                    Rm::RDN
                    > {
-  constexpr static std::string_view NAME = "flw.s";
+  constexpr static std::string_view NAME = "flw";
 };
 
 struct Fsw_s : public F_Sw<
@@ -380,7 +387,7 @@ struct Fsw_s : public F_Sw<
                    OpcodeID::FP_SW,
                    Rm::RDN
                    > {
-  constexpr static std::string_view NAME = "fsw.s";
+  constexpr static std::string_view NAME = "fsw";
 };
 
 //void enableExt(const ISAInfoBase *isa, InstrVec &instructions, PseudoInstrVec &pseudoInstructions);
