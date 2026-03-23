@@ -198,7 +198,6 @@ enum class Funct3 : unsigned {
   LB = 0b000,
   LH = 0b001,
   LW = 0b010,
-  FLW = 0b010,
   LBU = 0b100,
   LHU = 0b101,
   LWU = 0b110,
@@ -225,11 +224,7 @@ struct Lh : public Instr<Lh, Funct3::LH> {
 struct Lw : public Instr<Lw, Funct3::LW> {
   constexpr static std::string_view NAME = "lw";
 };
-/*
-struct Flw : public Instr<Flw, Funct3::FLW> {
-  constexpr static std::string_view NAME = "flw.s";
-};
-*/
+
 struct Lbu : public Instr<Lbu, Funct3::LBU> {
   constexpr static std::string_view NAME = "lbu";
 };
@@ -604,10 +599,6 @@ struct Lh : public PseudoInstrLoad<Lh> {
 struct Lw : public PseudoInstrLoad<Lw> {
   constexpr static std::string_view NAME = "lw";
 };
-/*
-struct Flw : public PseudoInstrLoad<Flw> {
-  constexpr static std::string_view NAME = "flw.s";
-};*/
 struct Ld : public PseudoInstrLoad<Ld> {
   constexpr static std::string_view NAME = "ld";
 };
