@@ -9,7 +9,7 @@ static void _enableExtPseudo(const ISAInfoBase *isa,
                              const std::set<Option> &) {
   using namespace TypePseudo;
 
-  enablePseudoInstructions<Lb, Lh, Lw, La, Sb, Sh, Sw, Call, Tail, J, Jr, Jalr,
+  enablePseudoInstructions<Lb, Lh, Lw, Flw, La, Sb, Sh, Sw, Call, Tail, J, Jr, Jalr,
                            Ret, Jal, Nop, Mv, Not, Neg, Seqz, Snez, Sltz, Sgtz,
                            Beqz, Bnez, Blez, Bgez, Bltz, Bgtz, Bgt, Ble, Bgtu,
                            Bleu>(pseudoInstructions);
@@ -49,7 +49,7 @@ void enableExt(const ISAInfoBase *isa, InstrVec &instructions,
   using namespace TypeR;
   using namespace TypeB;
 
-  enableInstructions<Addi, Andi, Slti, Sltiu, Xori, Ori, Lb, Lh, Lw, Lbu, Lhu,
+  enableInstructions<Addi, Andi, Slti, Sltiu, Xori, Ori, Lb, Lh, Lw, Flw, Lbu, Lhu,
                      Ecall, Auipc, Lui, Jal, Jalr, Sb, Sw, Sh, Add, Sub, Sll,
                      Slt, Sltu, Xor, Srl, Sra, Or, And, Beq, Bne, Blt, Bge,
                      Bltu, Bgeu>(instructions);
